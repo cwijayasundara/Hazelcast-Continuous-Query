@@ -10,7 +10,7 @@ import com.hazelcast.query.SqlPredicate;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class PredicatePoC {
+public class PredicatePoCSingleAttributePojo {
 
     public static void main(String args[]){
 
