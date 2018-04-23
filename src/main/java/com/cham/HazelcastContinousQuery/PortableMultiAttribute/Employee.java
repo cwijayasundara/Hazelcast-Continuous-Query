@@ -15,10 +15,10 @@ public class Employee implements Serializable,Portable {
     private final String id = UUID.randomUUID().toString();
 
     private String name;
-    private String age;
-    private String salary;
+    private int age;
+    private Double salary;
 
-    public Employee(String name, String age, String salary ) {
+    public Employee(String name, int age, Double salary ) {
         this.name = name;
         this.age=age;
         this.salary=salary;
@@ -38,19 +38,19 @@ public class Employee implements Serializable,Portable {
         return id;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public String getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 
@@ -68,16 +68,16 @@ public class Employee implements Serializable,Portable {
     public void writePortable(PortableWriter writer) throws IOException {
         System.out.println("Serialize");
         writer.writeUTF("name", name );
-       /* writer.writeUTF("age", age);
-        writer.writeUTF("salary", salary);*/
+        writer.writeInt("age", age);
+        writer.writeDouble("salary", salary);
     }
 
     @Override
     public void readPortable(PortableReader reader) throws IOException {
         System.out.println("Deserialize");
         this.name = reader.readUTF("name");
-        /*this.age = reader.readUTF("age");
-        this.salary=reader.readUTF("salary");*/
+        this.age = reader.readInt("age");
+        this.salary=reader.readDouble("salary");
     }
 
     public String getName() {

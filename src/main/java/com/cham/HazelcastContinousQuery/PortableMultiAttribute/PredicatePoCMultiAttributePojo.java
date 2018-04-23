@@ -21,13 +21,13 @@ public class PredicatePoCMultiAttributePojo {
 
         IMap<String, Employee> empMap = client.getMap("employee-map");
 
-        empMap.set("Alice", new Employee("Alice","20", "500.36" ));
-        empMap.set("Bob", new Employee("Bob", "40", "200.50"));
-        empMap.set("Sam", new Employee("Sam", "60", "1000.00"));
-        empMap.set("Tom", new Employee("Tom", "35", "750.00"));
-        empMap.set("Antoney", new Employee("Antoney","45", "300.89" ));
+        empMap.set("Alice", new Employee("Alice", 20, 500.50 ));
+        empMap.set("Bob", new Employee("Bob", 45, 1000.56 ));
+        empMap.set("Sam", new Employee("Sam", 35, 4567.89));
+        empMap.set("Tom", new Employee("Tom", 60, 5000.45));
+        empMap.set("Antoney", new Employee("Antoney",80, 345.56 ));
 
-        Collection<Employee> employees = empMap.values(new SqlPredicate( "name like A% OR name like S%"));
+        Collection<Employee> employees = empMap.values(new SqlPredicate( "name like A% AND age<100 AND salary>500"));
 
         Iterator itr = employees.iterator();
         while (itr.hasNext()){
