@@ -27,5 +27,6 @@ public class ValueProducerMain {
         serverEmpMap.set("Adam", new Employee("Adam", 20, 5000.50 ));
         serverEmpMap.set("Alice", new Employee("Alice", 22, 345.00 ));
 
+        serverEmpMap.remove("Alice");
     }
 }

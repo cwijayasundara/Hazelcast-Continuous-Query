@@ -12,8 +12,10 @@ import com.hazelcast.map.QueryCache;
 import com.hazelcast.map.listener.*;
 import com.hazelcast.query.SqlPredicate;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 public class PredicatePoCMultiAttributePojo {
 
@@ -25,6 +27,9 @@ public class PredicatePoCMultiAttributePojo {
     private final static String mapName="employee-map";
     private final static String portableClassName="com.cham.HazelcastContinousQuery.PortableMultiAttribute.PortableFactoryImpl";
     private final static int factoryId=1;
+
+    List<Employee> employeeList = new ArrayList<>();
+
 
     public static void main(String args[]){
 
