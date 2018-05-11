@@ -7,6 +7,8 @@ import com.hazelcast.config.SerializationConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.map.QueryCache;
+import com.hazelcast.query.Predicate;
+import com.hazelcast.query.Predicates;
 import com.hazelcast.query.SqlPredicate;
 
 import java.util.Collection;
@@ -34,10 +36,15 @@ public class PredicateWithCollectionInside {
 
         HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig);
 
+        Predicate p = Predicates.equal("states[any].stateName", "In Progress");
+
+
         IMap<String, Trade> clientTradeMap = (IMap) client.getMap(mapName);
 
         // continous query cache
         QueryCache<String, Trade> queryCache = clientTradeMap.getQueryCache(cacheName, new SqlPredicate(sqlPredicate),true);
+
+        //QueryCache<String, Trade> queryCache = clientTradeMap.getQueryCache(cacheName, p,true);
 
         Collection<Trade> tradeCollection = queryCache.values();
 
