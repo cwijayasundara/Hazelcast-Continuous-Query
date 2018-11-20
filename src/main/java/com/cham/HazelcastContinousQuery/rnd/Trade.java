@@ -28,6 +28,7 @@ public class Trade implements Serializable,Portable {
     private String tradeId;
     private String tradeName;
     private int tradeValue;
+
     private List<State> states = new ArrayList<>();
 
     public String getTradeId() {
@@ -80,7 +81,9 @@ public class Trade implements Serializable,Portable {
 
         if(states != null && !states.isEmpty()) {
             writer.writePortableArray("states", states.toArray(new Portable[states.size()]));
-            writer.writeBoolean("_has__nestedProperty", true);
+            writer.writeBoolean("_has__listProperty", true);
+        }else{
+            writer.writeBoolean("_has__listProperty", false);
         }
 
     }
@@ -92,11 +95,12 @@ public class Trade implements Serializable,Portable {
         this.tradeName = reader.readUTF("tradeName");
         this.tradeValue=reader.readInt("tradeValue");
 
-        Portable[] listPropertyArr = reader.readPortableArray("states");
+        if(reader.readBoolean("_has__listProperty")) {
+            Portable[] listPropertyArr = reader.readPortableArray("states");
             for (Portable p : listPropertyArr) {
                 states.add((State) p);
             }
-
+        }
     }
 
     @Override

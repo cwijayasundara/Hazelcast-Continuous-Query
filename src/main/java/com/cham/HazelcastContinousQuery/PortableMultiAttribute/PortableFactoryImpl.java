@@ -10,6 +10,7 @@ public class PortableFactoryImpl implements PortableFactory {
     public static final int EMPLOYEE_CLASS_ID = 1;
     public static final int STATE_CLASS_ID=2;
     public static final int TRADE_CLASS_ID=3;
+    public static final int ADDRESS_CLASS_ID=4;
 
     public static final int FACTORY_ID = 1;
 
@@ -21,6 +22,8 @@ public class PortableFactoryImpl implements PortableFactory {
                 return new State();
             case TRADE_CLASS_ID:
                 return new Trade();
+            case ADDRESS_CLASS_ID:
+                return new EmployeeAddress();
             default:
                 return null;
         }

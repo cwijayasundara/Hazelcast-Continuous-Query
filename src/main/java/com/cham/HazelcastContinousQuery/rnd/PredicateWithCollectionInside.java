@@ -17,6 +17,7 @@ public class PredicateWithCollectionInside {
     private final static String cacheName="trade-cache";
 
     private final static String sqlPredicate="tradeName like LBG% and states[any].stateName = 'In Progress'";
+    //private final static String sqlPredicate="tradeName like LBG%";
     private final static String mapName="trade-map";
     private final static String portableClassName="com.cham.HazelcastContinousQuery.PortableMultiAttribute.PortableFactoryImpl";
     private final static int factoryId=1;

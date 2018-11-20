@@ -9,6 +9,7 @@ import com.hazelcast.query.SqlPredicate;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 
 public class PredicatePoCSingleAttributePojo {
 
@@ -20,14 +21,16 @@ public class PredicatePoCSingleAttributePojo {
         HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig);
 
         IMap<String, Employee> empMap = client.getMap("employee-map");
+        IMap<String, Map<String, Employee>> empMap2 = client.getMap("employee-map");
 
-        empMap.set("Alice", new Employee("Alice"));
-        empMap.set("Bob", new Employee("Bob"));
-        empMap.set("Sam", new Employee("Sam"));
-        empMap.set("Tom", new Employee("Tom"));
-        empMap.set("Antoney", new Employee("Antoney"));
+        empMap.set("Alexandra", new Employee("Alexandra", 45, "UK"));
+        empMap.set("Bobby", new Employee("Bobby", 25, "India"));
+        empMap.set("Sammy", new Employee("Sammy", 35, "Canada"));
+        empMap.set("Thompson", new Employee("Thompson", 45, "US"));
+        empMap.set("Amalie", new Employee("Amalie", 65, "SL"));
+        empMap.set("Alice", new Employee("Alice", 20, "XXXX"));
 
-        Collection<Employee> employees = empMap.values(new SqlPredicate( "name like A% OR name like S%"));
+        Collection<Employee> employees = empMap.values(new SqlPredicate( "name like A% OR name like B%"));
 
         Iterator itr = employees.iterator();
         while (itr.hasNext()){

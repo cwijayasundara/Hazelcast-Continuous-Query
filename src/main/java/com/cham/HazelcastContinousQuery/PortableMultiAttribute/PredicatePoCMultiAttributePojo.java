@@ -43,7 +43,7 @@ public class PredicatePoCMultiAttributePojo {
         // continous query cache
         QueryCache<String, Employee> queryCache = clientEmpMap.getQueryCache(cacheName, new SqlPredicate(sqlPredicate),true);
 
-       queryCache.addEntryListener(new EmployeeEntryListener(), new SqlPredicate("name like A%"), true);
+       queryCache.addEntryListener(new EmployeeEntryListener(), new SqlPredicate("name like Ali%"), true);
 
         System.out.println("Registered the listener ..");
 
